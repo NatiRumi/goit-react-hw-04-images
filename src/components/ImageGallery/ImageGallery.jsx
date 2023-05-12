@@ -12,9 +12,13 @@ class ImageGallery extends Component {
         error: 'error'
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        this.setState({articles: GetArtikles(this.props.searchText)});
-        console.log(this.state.articles.hits)
+    async componentDidUpdate(prevProps, prevState) {
+        const text = this.props.searchText.trim();
+        if (prevProps.searchText !== text && text) {
+            const response = await GetArtikles(text)
+            await this.setState({articles: response});
+            console.log(this.state.articles)
+        }  
     }
 
     render() {
@@ -22,10 +26,10 @@ class ImageGallery extends Component {
         return(
         {this.state.articles !== null && (
             <ul className="gallery">
-            {this.state.articles.hits.map((item) => (<ImageGalleryItem item={item}/>))}
+                {this.state.articles.hits.map((item) => (<ImageGalleryItem item={item}/>))}
             </ul>
         )}
-        
+        // <div>ppp</div>
      )
     }   
 }

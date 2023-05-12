@@ -14,7 +14,7 @@ const GetArtikles = async(searchText) => {
     try {
         const response = await axios.get(`https://pixabay.com/api/?${searchParams.toString()}`);
         // this.page += 1;
-        console.log(response.data);
+        console.log(response.data.hits);
         return response.data;
     } catch (error) {console.error(error)}
 
