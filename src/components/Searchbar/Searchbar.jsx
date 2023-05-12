@@ -5,7 +5,10 @@ const FormSearch = ({ onSubmit }) => {
   
   return (
     <header className="searchbar">
-      <form className={css.searchForm} onSubmit={e => onSubmit(e.target.text.value)}>
+      <form className={css.searchForm} onSubmit={e => {
+        e.preventDefault();
+        onSubmit(e.target.text.value)
+      }}>
           <button type="submit" className="button">
           <span className="button-label">Search</span>
         </button>

@@ -5,7 +5,7 @@ import ImageGallery from './ImageGallery/ImageGallery';
 
 class App extends Component {
   state = {
-    searchText: 'mama'
+    searchText: ''
   }
 
   getSearcText = (request) => {
