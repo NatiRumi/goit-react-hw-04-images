@@ -1,22 +1,27 @@
 import React from 'react';
 import { Component } from 'react';
 import Searchbar from './Searchbar/Searchbar';
-import ImageGallery from './ImageGallery/ImageGallery';
+// import ImageGallery from './ImageGallery/ImageGallery';
 
 class App extends Component {
   state = {
-    searchText: ''
+    searchText: 'mama'
   }
 
-  getSearcText = (searchText) => {
-    this.setState({ searchText: searchText })
+  getSearcText = (request) => {
+    this.setState({ searchText: request });
+    
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(this.state.searchText)
   }
 
   render() {
     return(
       <>
         <Searchbar onSubmit={this.getSearcText}/>
-        <ImageGallery searchText={this.state.searchText}/>
+        {/* <ImageGallery searchText={this.state.searchText}/> */}
       </>
       
   )
