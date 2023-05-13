@@ -2,6 +2,10 @@ a {
     text-decoration: none;
 }
 
+.notify {
+    text-align: center;
+}
+
 .galleryItem {
     list-style: none;
 }
@@ -22,4 +26,8 @@ a {
 .photoCard img{
         width: 100%;
         height: auto;
+}
+
+body {
+    text-align: center;
 }
