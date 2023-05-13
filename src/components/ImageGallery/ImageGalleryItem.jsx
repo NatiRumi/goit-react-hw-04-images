@@ -1,10 +1,15 @@
 import React from 'react';
+import css from './GalleryStyle.module.css'
 
-const ImageGalleryItem = (item) => {
+const ImageGalleryItem = ({url, alt, href}) => {
+    // console.log();
     return(
-        <li className="gallery-item" key={item.id}>
-            <img src={item.webformatURL} alt={item.tags} />
-        </li>
+        <a className={css.photoCard} href={href}>
+            <li className={css.galleryItem}>
+                <img src={url} alt={alt} />
+            </li>
+        </a>
+        
     )
 }
 

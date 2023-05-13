@@ -1,0 +1,25 @@
+a {
+    text-decoration: none;
+}
+
+.galleryItem {
+    list-style: none;
+}
+.gallery {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.photoCard {
+    width: calc((100% - 60px)/4);
+    margin-bottom: 15px;
+    border: 0.5px solid lightgray;
+    padding: 5px;
+}
+
+.photoCard img{
+        width: 100%;
+        height: auto;
+}

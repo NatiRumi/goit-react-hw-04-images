@@ -7,15 +7,15 @@ const GetArtikles = async(searchText) => {
         image_type: "photo",
         orientation: "horizontal",
         safesearch: "true",
-        // per_page: this.per_page,
+        per_page: 12,
         // page: this.page
     })
 
     try {
         const response = await axios.get(`https://pixabay.com/api/?${searchParams.toString()}`);
         // this.page += 1;
-        console.log(response.data.hits);
-        return response.data;
+        // console.log(response.data.hits);
+        return response.data.hits;
     } catch (error) {console.error(error)}
 
 }
