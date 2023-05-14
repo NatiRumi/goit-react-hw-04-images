@@ -1,15 +1,12 @@
 import React from 'react';
 import { Component } from 'react';
-// import Notiflix from 'notiflix';
 import ImageGalleryItem from './ImageGalleryItem';
 import GetArtikles from 'components/API/Api';
 import css from './GalleryStyle.module.css';
 import Button from 'components/LoadMore/Button';
-// import { Blocks } from 'react-loader-spinner';
 import { nanoid } from 'nanoid';
 import Loader from 'components/LoadMore/Loader';
-// import SimpleLightbox from "simplelightbox";
-// import "simplelightbox/dist/simple-lightbox.min.css";
+import PropTypes from 'prop-types';
 
 class ImageGallery extends Component {
   state = {
@@ -18,10 +15,7 @@ class ImageGallery extends Component {
     per_page: 12,
     total: 1,
     loading: false,
-    error: 'error',
   };
-
-  //   let lightbox = new SimpleLightbox('.gallery a');
 
   async componentDidUpdate(prevProps, prevState) {
     const text = this.props.searchText.trim();
@@ -37,8 +31,6 @@ class ImageGallery extends Component {
         total: response.totalHits,
         loading: false,
       });
-      //   lightbox.refresh()
-      console.log(this.state.articles);
     }
   }
 
@@ -78,22 +70,7 @@ class ImageGallery extends Component {
           </div>
         )}
 
-        {this.state.loading && (
-          <Loader/>
-        )}
-
-        {/* {this.state.loading && (
-          <div className={css.loader}>
-            <Blocks
-              visible={true}
-              height="40"
-              width="40"
-              ariaLabel="blocks-loading"
-              wrapperStyle={{}}
-              wrapperClass="blocks-wrapper"
-            />
-          </div>
-        )} */}
+        {this.state.loading && <Loader />}
 
         {this.state.total > this.state.per_page &&
           this.state.page <
@@ -106,3 +83,7 @@ class ImageGallery extends Component {
 }
 
 export default ImageGallery;
+
+ImageGallery.propTypes = {
+  searchText: PropTypes.string,
+};

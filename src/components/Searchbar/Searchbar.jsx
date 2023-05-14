@@ -1,15 +1,18 @@
 import React from 'react';
 import css from './formStyle.module.css';
+import PropTypes from 'prop-types';
 
 const FormSearch = ({ onSubmit }) => {
-  
   return (
     <header className="searchbar">
-      <form className={css.searchForm} onSubmit={e => {
-        e.preventDefault();
-        onSubmit(e.target.text.value)
-      }}>
-          <button type="submit" className="button">
+      <form
+        className={css.searchForm}
+        onSubmit={e => {
+          e.preventDefault();
+          onSubmit(e.target.text.value);
+        }}
+      >
+        <button type="submit" className="button">
           <span className="button-label">Search</span>
         </button>
 
@@ -26,6 +29,8 @@ const FormSearch = ({ onSubmit }) => {
   );
 };
 
-
-
 export default FormSearch;
+
+FormSearch.propTypes = {
+  onSubmit: PropTypes.func,
+};

@@ -6,8 +6,7 @@ import ImageGallery from './ImageGallery/ImageGallery';
 
 class App extends Component {
   state = {
-    searchText: '',
-    page: 1
+    searchText: ''
   }
 
   getSearcText = (request) => {
@@ -18,9 +17,6 @@ class App extends Component {
     this.setState({ searchText: request });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // console.log(this.state.searchText)
-  }
 
   render() {
     return(
