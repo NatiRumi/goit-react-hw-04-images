@@ -28,14 +28,14 @@ class ImageGallery extends Component {
       const response = await GetArtikles(text, this.state.page, this.state.per_page);
       this.setState({ articles: response.hits, total: response.totalHits });
     //   lightbox.refresh()
-    //   console.log(response);
+      console.log(this.state.articles);
     }
   }
 
-  async updateGallery() {
+  updateGallery = async () => {
     await this.setState(prevState => ({page: prevState.page + 1}));
     const response = await GetArtikles(this.props.searchText.trim(), this.state.page, this.state.per_page);
-    this.setState({ articles: response.hits })
+    this.setState({ articles: [...this.state.articles, response.hits] })
   }
 
   render() {
@@ -58,7 +58,7 @@ class ImageGallery extends Component {
             <div className={css.notify}>За вашим запитом не знайдено жодного зображення</div>
         )}
 
-        {this.state.total > this.state.per_page &&(
+        {(this.state.total > this.state.per_page && this.state.page < Math.ceil(Number(this.state.total / this.state.per_page))) &&(
             <Button onClick={this.updateGallery}/>
         )}
         </>
