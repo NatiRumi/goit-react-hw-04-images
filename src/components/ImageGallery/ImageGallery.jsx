@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import ImageGalleryItem from './ImageGalleryItem';
-import GetArtikles from 'components/API/Api';
+import GetArtikles from '../Api';
 import css from './GalleryStyle.module.css';
 import Button from 'components/LoadMore/Button';
 import { nanoid } from 'nanoid';
