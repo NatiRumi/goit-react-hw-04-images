@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 function ImageGallery({ searchText }) {
   const [articles, setArticles] = useState(null);
   const [page, setPage] = useState(1);
-  const [per_page, _] = useState(12);
+  const [per_page] = useState(12);
   const [total, setTotal] = useState(1);
   const [loading, setLoading] = useState(false);
 
@@ -35,7 +35,7 @@ function ImageGallery({ searchText }) {
     setPage(prevState => {
       return page + 1;
     });
-    
+
     setLoading(true);
     const response = await GetArtikles(searchText, page, per_page);
     setLoading(false);
