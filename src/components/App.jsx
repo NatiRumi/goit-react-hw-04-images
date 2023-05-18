@@ -1,32 +1,26 @@
 import React from 'react';
-import { Component } from 'react';
+import { useState } from 'react';
 import Notiflix from 'notiflix';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 
-class App extends Component {
-  state = {
-    searchText: ''
-  }
+function App() {
+  const [searchText, setSearchText] = useState('');
 
-  getSearcText = (request) => {
-    if (request.trim() === "") {
-      Notiflix.Notify.warning("Введіть значення для пошуку");
+  const getSearcText = request => {
+    if (request.trim() === '') {
+      Notiflix.Notify.warning('Введіть значення для пошуку');
       return;
-    } 
-    this.setState({ searchText: request });
-  }
+    }
+    setSearchText(request.trim());
+  };
 
-
-  render() {
-    return(
-      <>
-        <Searchbar onSubmit={this.getSearcText}/>
-        <ImageGallery searchText={this.state.searchText}/>
-      </>
-      
-  )
-}
+  return (
+    <>
+      <Searchbar onSubmit={getSearcText} />
+      <ImageGallery searchText={searchText} />
+    </>
+  );
 }
 
 export default App;
