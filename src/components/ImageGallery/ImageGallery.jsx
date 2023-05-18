@@ -31,9 +31,11 @@ function ImageGallery({ searchText }) {
   }, [searchText]);
 
   const updateGallery = async () => {
+
     setPage(prevState => {
       return page + 1;
     });
+    
     setLoading(true);
     const response = await GetArtikles(searchText, page, per_page);
     setLoading(false);
