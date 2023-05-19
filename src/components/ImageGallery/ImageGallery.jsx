@@ -15,9 +15,11 @@ function ImageGallery({ searchText }) {
   const [total, setTotal] = useState(1);
   const [loading, setLoading] = useState(false);
 
+  
+
   useEffect(() => {
     async function fetchArtikles() {
-      const response = await GetArtikles(searchText, 1, 12);
+      const response = await GetArtikles(searchText, 1, per_page);
       setArticles(response.hits);
       setTotal(response.totalHits);
       setLoading(false);
@@ -28,7 +30,7 @@ function ImageGallery({ searchText }) {
       setLoading(true);
       fetchArtikles();
     }
-  }, [searchText]);
+  }, [searchText, per_page]);
 
 
   const updateGallery = async () => {
@@ -38,10 +40,10 @@ function ImageGallery({ searchText }) {
 
     setLoading(true);
     const response = await GetArtikles(searchText, page, per_page);
-    setLoading(false);
     setArticles(prevState => {
       return [...articles, ...response.hits];
     });
+    setLoading(false);
   };
 
   return (
