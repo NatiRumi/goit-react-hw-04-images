@@ -26,6 +26,7 @@ function App() {
     if (searchText) {
       fetchArtikles();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchText, page]);
 
   const handleLoadMore = async () => {
