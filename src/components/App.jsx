@@ -9,26 +9,24 @@ import getArticles from '../api/Api';
 
 function App() {
   const [searchText, setSearchText] = useState('');
-  const [ articles, setArticles ] = useState([]);
-  const [ page, setPage ] = useState(1);
-  const [ total, setTotal ] = useState(1);
-  const [ loading, setLoading ] = useState(false);
+  const [articles, setArticles] = useState([]);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchArtikles() {
-      setLoading(true)
+      setLoading(true);
       const response = await getArticles(searchText, page);
       setArticles(prevState => [...articles, ...response.hits]);
       setTotal(response.totalHits);
       setLoading(false);
     }
 
-    // then(images => setImages(prevState => [...prevState, ...images]))
-
     if (searchText) {
       fetchArtikles();
     }
-  }, [ searchText, page ]);
+  }, [searchText, page]);
 
   const handleLoadMore = async () => {
     setPage(page + 1);
@@ -42,7 +40,7 @@ function App() {
     if (request.trim() !== searchText) {
       setPage(1);
       setTotal(0);
-      setArticles([])
+      setArticles([]);
     }
     setSearchText(request.trim());
   };
@@ -50,12 +48,12 @@ function App() {
   return (
     <>
       <Searchbar onSubmit={handleSearch} />
-      <ImageGallery articles={ articles } total={total} />
-      { loading && <Loader /> }
+      <ImageGallery articles={articles} total={total} />
+      {loading && <Loader />}
 
-      { total > 12 && page < Math.ceil(Number(total / 12)) && (
-        <Button onClick={ handleLoadMore } />
-      ) }
+      {total > 12 && page < Math.ceil(Number(total / 12)) && (
+        <Button onClick={handleLoadMore} />
+      )}
     </>
   );
 }
