@@ -19,7 +19,35 @@ function ImageGalleryItem({ url, alt, href }) {
   );
 }
 
+// class ImageGalleryItem extends Component {
+//   state = {
+//     showModal: false,
+//   };
+
+//   toggleModal = () => {
+//     this.setState(prevState => ({
+//       showModal: !prevState.showModal,
+//     }));
+//   };
+
+//   render() {
+//     return (
+//       <li className={css.galleryItem} onClick={this.toggleModal}>
+//         <img src={this.props.url} alt={this.props.alt} />
+//         {this.state.showModal && (
+//           <Modal
+//             onClose={this.toggleModal}
+//             href={this.props.href}
+//             alt={this.props.alt}
+//           />
+//         )}
+//       </li>
+//     );
+//   }
+// }
+
 export default ImageGalleryItem;
+
 ImageGalleryItem.propTypes = {
   url: PropTypes.string,
   alt: PropTypes.string,

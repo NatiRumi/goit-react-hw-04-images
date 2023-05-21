@@ -1,34 +1,35 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import Notiflix from 'notiflix';
-import Searchbar from './Searchbar/Searchbar';
-import ImageGallery from './ImageGallery/ImageGallery';
+import { useEffect, useState } from 'react';
+
 import Button from 'components/LoadMore/Button';
+import ImageGallery from './ImageGallery/ImageGallery';
 import Loader from 'components/LoadMore/Loader';
-import getArticles from '../api/Api';
+import Notiflix from 'notiflix';
+import React from 'react';
+import Searchbar from './Searchbar/Searchbar';
+import getArticles from 'api/api';
 
 function App() {
-  const [searchText, setSearchText] = useState('');
+  const [ searchText, setSearchText ] = useState('');
   const [ articles, setArticles ] = useState([]);
   const [ page, setPage ] = useState(1);
   const [ total, setTotal ] = useState(1);
   const [ loading, setLoading ] = useState(false);
 
+
   useEffect(() => {
     async function fetchArtikles() {
       setLoading(true)
       const response = await getArticles(searchText, page);
-      setArticles(prevState => [...articles, ...response.hits]);
+      setArticles(response.hits);
       setTotal(response.totalHits);
       setLoading(false);
     }
-
-    // then(images => setImages(prevState => [...prevState, ...images]))
 
     if (searchText) {
       fetchArtikles();
     }
   }, [ searchText, page ]);
+
 
   const handleLoadMore = async () => {
     setPage(page + 1);
@@ -49,8 +50,8 @@ function App() {
 
   return (
     <>
-      <Searchbar onSubmit={handleSearch} />
-      <ImageGallery articles={ articles } total={total} />
+      <Searchbar onSubmit={ handleSearch } />
+      <ImageGallery articles={ articles } />
       { loading && <Loader /> }
 
       { total > 12 && page < Math.ceil(Number(total / 12)) && (

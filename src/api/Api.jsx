@@ -1,14 +1,14 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-const GetArtikles = async (searchText, page, per_page) => {
+const GetArtikles = async (searchText, page) => {
   const searchParams = new URLSearchParams({
     key: '34747655-3d476a5c24b1ab5d2173a79ca',
     q: searchText,
     image_type: 'photo',
     orientation: 'horizontal',
     safesearch: 'true',
-    per_page: per_page,
+    per_page: 12,
     page: page,
   });
 
