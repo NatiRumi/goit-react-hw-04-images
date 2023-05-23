@@ -18,7 +18,7 @@ function App() {
     async function fetchArtikles() {
       setLoading(true);
       const response = await getArticles(searchText, page);
-      setArticles(prevState => [...articles, ...response.hits]);
+      setArticles(prevArticles => [...prevArticles, ...response.hits]);
       setTotal(response.totalHits);
       setLoading(false);
     }
